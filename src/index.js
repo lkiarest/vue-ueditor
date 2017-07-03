@@ -72,25 +72,33 @@
              * @param {String} val input content
              */
             setContent: function(val) {
-                runUeMethod(this.ue, 'setContent', val || '')
+                return runUeMethod(this.ue, 'setContent', val || '')
+            },
+            /**
+             * get content length
+             * @param  {Boolean} ignoreHtml if set to true, all html tags will be ignored
+             * @return {Number}            the content length
+             */
+            getContentLength: function(ignoreHtml) {
+                return runUeMethod(this.ue, 'getContentLength', ignoreHtml)
             },
             /**
              * enable editor
              */
             enable: function() {
-                runUeMethod(this.ue, 'setEnabled')
+                return runUeMethod(this.ue, 'setEnabled')
             },
             /**
              * disable editor
              */
             disable: function() {
-                runUeMethod(this.ue, 'setDisabled')
+                return runUeMethod(this.ue, 'setDisabled')
             },
             /**
              * clear all content
              */
             clear: function() {
-                runSelectionMethod(this.ue, 'clear')
+                return runSelectionMethod(this.ue, 'clear')
             }
         },
         ready () {

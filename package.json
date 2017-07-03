@@ -1,5 +1,5 @@
 {
-  "name": "vue-ueditor",
+  "name": "vueueditor",
   "version": "0.9.0",
   "description": "vue(1.x) rich text editor based on ueditor",
   "main": "src/index.js",
@@ -7,6 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "qintx",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lkiarest/vue-ueditor.git"
+  },
   "license": "MIT",
   "keywords": [
     "vue",

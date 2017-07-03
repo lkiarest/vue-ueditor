@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vue Ueditor Test</title>
+</head>
+<body>
+    <div id='app'>
+        <h1>{{title}}</h1>
+        <div style='min-width: 800px; width: 50%;'>
+            <vue-ueditor v-ref:ue :options='ueOptions' :content='content' @change='contentChange' :enabled='enabled'></vue-ueditor>
+        </div>
+        <div style='margin: 8px 0;'>
+            <button @click='getContent'>Get</button>
+            <button @click='setContent'>Set</button>
+            <button @click='clear'>Clear</button>
+            <button @click='enable'>Enable</button>
+            <button @click='disable'>Disable</button>
+        </div>
+        <div id='result'></div>
+    </div>
+    <script src='https://cdn.bootcss.com/vue/1.0.28/vue.min.js'></script>
+    <script src='http://res.wisedu.com/bower_components/ueditor/ueditor.config.js'></script>
+    <script src='http://res.wisedu.com/bower_components/ueditor/ueditor.all.min.js'></script>
+    <script src='../src/index.js'></script>
+    <script>
+        var r = function(msg) {
+            document.getElementById('result').innerText = msg
+        }
+
+        new Vue({
+            el: '#app',
+            data: () => ({
+                title: 'demo',
+                content: 'Hello Everybody',
+                enabled: true,
+                ueOptions: {
+                    toolbars: [[
+                        'fullscreen', 'source', '|', 'undo', 'redo', '|',
+                        'bold', 'italic', 'underline', 'fontborder', 'removeformat', 'formatmatch', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+                        'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+                        'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|', 'indent', '|',
+                        'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
+                        'link', 'unlink', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+                        'simpleupload', 'insertimage', 'insertvideo', 'music', '|',
+                        'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts'
+                    ]],
+                    maximumWords: 500
+                }
+            }),
+            methods: {
+                setContent: function() {
+                    this.content = 'Hello Qintx'
+                },
+                getContent: function() {
+                    alert(this.$refs.ue.getContent())
+                },
+                contentChange: function(content) {
+                    r(content)
+                },
+                clear: function() {
+                    this.content = ''
+                },
+                enable: function() {
+                    this.enabled = true
+                },
+                disable: function() {
+                    this.enabled = false
+                }
+            },
+            components: {
+                VueUeditor: VueUEditor
+            }
+        })
+    </script>
+</body>
+</html>

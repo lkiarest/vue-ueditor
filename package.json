@@ -1,0 +1,15 @@
+{
+  "name": "vue-ueditor",
+  "version": "0.9.0",
+  "description": "vue(1.x) rich text editor based on ueditor",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "qintx",
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "ueditor"
+  ]
+}

@@ -39,12 +39,22 @@
      */
     return {
         name: 'vue-ueditor',
-        version: '1.0.0',
-        template: '<div class="vue-ueditor"></div>',
-        data: () => ({
-            ue: null
-        }),
+        version: '0.9.2',
+        template: '<div :id=\'eid\' class="vue-ueditor"></div>',
+        data: function() {
+            return {
+                ue: null
+            }
+        },
         props: {
+            /**
+             * when create UEditor by getEditor with $el instead of dom id, the instance will not be destroyed properly.
+             * so if you have more than one editor at one page, please specify the unique eid for each editor.
+             */
+            eid: {
+                type: String,
+                default: 'vueditor'
+            },
             options: Object,
             content: String,
             enabled: {
@@ -101,9 +111,9 @@
                 return runSelectionMethod(this.ue, 'clear')
             }
         },
-        ready () {
+        ready: function() {
             var vm = this
-            var ue = UE.getEditor(this.$el, this.options)
+            var ue = UE.getEditor(this.eid, this.options)
 
             ue.addListener( 'ready', function( editor ) {
                 vm.ue = ue
@@ -140,10 +150,11 @@
                 }
             })
         },
-        beforeDestroy () {
+        beforeDestroy: function() {
+            // console.log(this.ue)
             var ue = this.ue
             if (ue) {
-                ue.removeListener('ready')
+                // ue.removeListener('ready,contentChange')
                 ue.destroy()
                 this.ue = null
             }
